@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
     // создание объекта ServiceConnection = это позволит активности связаться со службой
     private ServiceConnection connection = new ServiceConnection() {
         @Override
-        public void onServiceConnected(ComponentName name, IBinder binder) {
+        public void onServiceConnected(ComponentName componentName, IBinder binder) {
             // параметр IBinder используем для получения ссылки на службу,
             // с которой устанавливается связь (в данном случае нужно привести IBinder
             // к типу OdometerService.OdometerBinder
@@ -43,7 +43,7 @@ public class MainActivity extends Activity {
         // метод решает только одну задачу = сохраняет информацию о том, что активность теперь не
         // связана со службой
         @Override
-        public void onServiceDisconnected(ComponentName name) {
+        public void onServiceDisconnected(ComponentName componentName) {
             bound = false;
         }
     };
