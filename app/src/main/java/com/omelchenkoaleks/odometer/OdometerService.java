@@ -120,4 +120,19 @@ public class OdometerService extends Service {
             }
         }
     }
+
+    // в этом методе остановку получения обновлений слушателем
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (locationManager != null && listener != null) {
+            // проверяем разрешение на их удаление и если есть - прекращаем обновления
+            if (ContextCompat.checkSelfPermission(this, PERMISSION_STRING)
+                    == PackageManager.PERMISSION_GRANTED) {
+                locationManager.removeUpdates(listener);
+            }
+            locationManager = null;
+            listener = null;
+        }
+    }
 }
