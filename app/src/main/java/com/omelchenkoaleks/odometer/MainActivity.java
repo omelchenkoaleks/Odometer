@@ -53,4 +53,17 @@ public class MainActivity extends Activity {
         // привязываем
         bindService(intent, connection, Context.BIND_AUTO_CREATE);
     }
+
+    // в этом методе будет отмена связывания
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        if (bound) {
+            // отмена связывания осуществляется этим методом
+            unbindService(connection);
+            // переменной присваивается false
+            bound = false;
+        }
+    }
 }
