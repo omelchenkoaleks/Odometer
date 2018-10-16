@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 
+import java.util.Random;
+
 public class OdometerService extends Service {
 
     /**
@@ -12,6 +14,9 @@ public class OdometerService extends Service {
      *  создадим эту приватную переменную... В ней созданим экземпляр объекта и вернем его в методе
      */
     private final IBinder binder = new OdometerBinder();
+
+    // для получения случайных чисел используется метод Random()
+    private final Random random = new Random();
 
     // метод вызывается, когда компонент(н-р активность) выдаст запрос на связывание со службой
     // интерфейс IBinder используется для связывания службы с активностью - его нужно реализовать
@@ -27,5 +32,12 @@ public class OdometerService extends Service {
         OdometerService getOdometer() {
             return OdometerService.this;
         }
+    }
+
+    // это метод будет вызываться нашей активностью - он будет использовать
+    // службу позиционирования Андроид
+    public double getDistance() {
+        // получить случайное число типа Double
+        return random.nextDouble();
     }
 }
