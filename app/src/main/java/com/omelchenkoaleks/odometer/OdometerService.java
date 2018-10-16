@@ -13,8 +13,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.content.ContextCompat;
 
-import java.util.Random;
-
 public class OdometerService extends Service {
 
     // чтобы объект слушателя был доступен для других методов нужна эта переменная
@@ -41,9 +39,6 @@ public class OdometerService extends Service {
      */
     private final IBinder binder = new OdometerBinder();
 
-    // для получения случайных чисел используется метод Random()
-    private final Random random = new Random();
-
     // метод вызывается, когда компонент(н-р активность) выдаст запрос на связывание со службой
     // интерфейс IBinder используется для связывания службы с активностью - его нужно реализовать
     @Override
@@ -63,9 +58,6 @@ public class OdometerService extends Service {
     // это метод будет вызываться нашей активностью - он будет использовать
     // службу позиционирования Андроид
     public double getDistance() {
-        // это был тест со случайным числом
-//        // получить случайное число типа Double
-//        return random.nextDouble();
 
         // расстояние в метрах преобразуем в мили
         return this.distanceInMeters / 1609.344;
