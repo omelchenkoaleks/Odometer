@@ -32,9 +32,11 @@ public class MainActivity extends Activity {
             bound = true;
         }
 
+        // метод решает только одну задачу = сохраняет информацию о том, что активность теперь не
+        // связана со службой
         @Override
         public void onServiceDisconnected(ComponentName name) {
-
+            bound = false;
         }
     };
 }
