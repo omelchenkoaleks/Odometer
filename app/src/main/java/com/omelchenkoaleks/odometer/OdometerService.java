@@ -63,8 +63,12 @@ public class OdometerService extends Service {
     // это метод будет вызываться нашей активностью - он будет использовать
     // службу позиционирования Андроид
     public double getDistance() {
-        // получить случайное число типа Double
-        return random.nextDouble();
+        // это был тест со случайным числом
+//        // получить случайное число типа Double
+//        return random.nextDouble();
+
+        // расстояние в метрах преобразуем в мили
+        return this.distanceInMeters / 1609.344;
     }
 
     // реализуем слушатель в этом методе - он долже создаваться при создании OdometerService
