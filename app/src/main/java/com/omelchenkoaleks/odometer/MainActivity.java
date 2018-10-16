@@ -2,6 +2,8 @@ package com.omelchenkoaleks.odometer;
 
 import android.app.Activity;
 import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -39,4 +41,16 @@ public class MainActivity extends Activity {
             bound = false;
         }
     };
+
+    // этот метод выбран для связывания активности со службой =
+    // наш сервис должен быть видим когда активность становится видимой
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        // создаем итент для службы с которой выполняется связывание
+        Intent intent = new Intent(this, OdometerService.class);
+        // привязываем
+        bindService(intent, connection, Context.BIND_AUTO_CREATE);
+    }
 }
