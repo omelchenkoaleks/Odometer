@@ -2,12 +2,18 @@ package com.omelchenkoaleks.odometer;
 
 import android.app.Service;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
 import android.os.Binder;
+import android.os.Bundle;
 import android.os.IBinder;
 
 import java.util.Random;
 
 public class OdometerService extends Service {
+
+    // чтобы объект слушателя был доступен для других методов нужна эта переменная
+    private LocationListener listener;
 
     /**
      *  т.к. экземпляр OdometerBinder должен возвращаться методом onBind() класса OdometerService -
@@ -39,5 +45,34 @@ public class OdometerService extends Service {
     public double getDistance() {
         // получить случайное число типа Double
         return random.nextDouble();
+    }
+
+    // реализуем слушатель в этом методе - он долже создаваться при создании OdometerService
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        // создать LocationListener
+        listener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+
+            }
+        };
     }
 }
